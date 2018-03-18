@@ -16,7 +16,8 @@ public class GCD {
         if (a == 0) return b;
         if (b == 0) return a;
         if (a >= b) return getGCD(a % b, b);
-        if (b >= a) return getGCD(a, b % a);
-        return -1;
+        else {
+            return getGCD(a, b % a);
+        }
     }
 }

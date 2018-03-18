@@ -1,23 +1,27 @@
+import java.math.BigInteger;
 
 public class GCD {
 
     public static void main(String[] args) {
-        long a = 0;
-        long b = 0;
+        BigInteger a;
+        BigInteger b;
         try (java.util.Scanner scanner = new java.util.Scanner(System.in)) {
-            a = scanner.nextLong();
-            b = scanner.nextLong();
+            a = scanner.nextBigInteger();
+            b = scanner.nextBigInteger();
         }
-        System.out.println(getGCD(a,b));
+        System.out.println(new GCD().getGCD(a,b));
     }
     //Алгоритм Евклида
     //Наибольший общий делитель
-    private static long getGCD(long a, long b){
-        if (a == 0) return b;
-        if (b == 0) return a;
-        if (a >= b) return getGCD(a % b, b);
-        else {
-            return getGCD(a, b % a);
+    private BigInteger getGCD(BigInteger a, BigInteger b){
+        while (true){
+            if (a.equals(BigInteger.ZERO)) return b;
+            if (b.equals(BigInteger.ZERO)) return a;
+            if (a.compareTo(b) >= 0) {
+                a = a.mod(b);
+            }else {
+                b = b.mod(a);
+            }
         }
     }
 }

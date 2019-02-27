@@ -3,6 +3,7 @@
 В качестве графа использовано дерево исключений python3.7.2
 """
 from collections import deque
+
 __all__ = ['search']
 
 graph = dict()
@@ -103,12 +104,15 @@ def exception_was_found(exception, i_want_to_find):
 def search(graph, i_want_to_find):
     search_queue = deque()
     search_queue += graph['root']
+    searched = []
     while search_queue:
         exception = search_queue.popleft()
-        if exception_was_found(exception, i_want_to_find):
-            return True
-        else:
-            search_queue += graph[exception]
+        if exception not in searched:
+            if exception_was_found(exception, i_want_to_find):
+                return True
+            else:
+                search_queue += graph[exception]
+                searched.append(exception)
     return False
 
 

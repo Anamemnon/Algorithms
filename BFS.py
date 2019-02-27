@@ -3,6 +3,7 @@
 В качестве графа использовано дерево исключений python3.7.2
 """
 from collections import deque
+__all__ = ['search']
 
 graph = dict()
 # Корневой элемент
